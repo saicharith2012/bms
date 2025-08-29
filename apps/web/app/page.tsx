@@ -7,5 +7,5 @@ export default async function Home() {
     return <div>{(response as ActionError).message}</div>;
   }
 
-  return <div>{JSON.stringify((response as FetchUserResponse).user)}</div>;
+  return <div>user data: {JSON.stringify((response as FetchUserResponse).user)}</div>;
 }

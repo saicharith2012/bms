@@ -36,3 +36,11 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# NGINX environment files
+nginx-conf/.env.prod
+nginx-conf/.env.staging
+
+# NGINX generated configuration files
+nginx-conf/nginx-*.conf
+!nginx-conf/nginx.conf.template

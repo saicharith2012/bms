@@ -1,0 +1,47 @@
+
+events {
+   # Event directives...
+}
+
+http {
+   server {
+   listen 80;
+   server_name ${HTTP_BMS_DOMAIN};
+
+   location / {
+	proxy_pass ${HTTP_SERVER_URL};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+   }
+  
+   server {
+   listen 80;
+   server_name ${WS_BMS_DOMAIN};
+
+   location / {
+        proxy_pass ${WS_SERVER_URL};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+}}
+
+   server {
+   listen 80;
+   server_name ${FE_BMS_DOMAIN};
+
+   location / {
+        proxy_pass ${FE_SERVER_URL};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+   }
+
+}

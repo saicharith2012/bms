@@ -9,15 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploying all apps to staging cluster
     steps:
-      - name: Add host key to known_hosts
-        run: |
-          mkdir -p ~/.ssh                      
-          ssh-keyscan ec2-18-212-108-238.compute-1.amazonaws.com >> ~/.ssh/known_hosts
       - name: SSH into the server and deploy
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -i ~/ssh_key ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com -t "
+          ssh -i ~/ssh_key -o StrictHostKeyChecking=no ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com -t "
           cd bms/ && 
           git pull origin main && 
           export PATH=/home/ubuntu/.nvm/versions/node/v22.19.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin &&

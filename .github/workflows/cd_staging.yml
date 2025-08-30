@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -i aws-ec2-key-pairs/charith-first.pem ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com "\
+          ssh -i ~/ssh_key ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com "\
           source ~/.bashrc && \
           cd bms/ && \
           git pull && \

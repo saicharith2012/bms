@@ -18,6 +18,12 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
           ssh -i ~/ssh_key ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com << 'EOF'
+            source ~/.bashrc
             cd bms/
-            echo "hello" > hello.txt
+            git pull
+            pnpm install
+            pnpm run build
+            pm2 restart http-server
+            pm2 restart fe-server
+            pm2 restart ws-server
           EOF

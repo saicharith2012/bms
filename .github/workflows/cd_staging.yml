@@ -20,7 +20,7 @@ jobs:
           ssh -i ~/ssh_key ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com -t "
           cd bms/ && 
           git pull origin main && 
-          source ~/.bashrc &&
+          export PATH=/home/ubuntu/.nvm/versions/node/v22.19.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin &&
           pnpm install && 
           pnpm run build && 
           pm2 restart http-server && 

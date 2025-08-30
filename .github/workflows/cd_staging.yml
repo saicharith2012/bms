@@ -17,13 +17,12 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           chmod 600 ~/ssh_key
-          ssh -i ~/ssh_key ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com "\
-          source ~/.bashrc && \
-          cd bms/ && \
-          git pull && \
-          pnpm install && \
-          pnpm run build && \
-          pm2 restart http-server && \
-          pm2 restart fe-server && \
+          ssh -i ~/ssh_key ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com -t "
+          cd bms/ && 
+          git pull origin main && 
+          pnpm install && 
+          pnpm run build && 
+          pm2 restart http-server && 
+          pm2 restart fe-server && 
           pm2 restart ws-server"
 

@@ -20,6 +20,7 @@ jobs:
           ssh -i ~/ssh_key ubuntu@ec2-18-212-108-238.compute-1.amazonaws.com -t "
           cd bms/ && 
           git pull origin main && 
+          source ~/.bashrc &&
           pnpm install && 
           pnpm run build && 
           pm2 restart http-server && 
